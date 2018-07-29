@@ -85,7 +85,7 @@ shodanvuln(){
 nmapTop1000TCP(){
 	mkdir ./$1/$foldername/nmap-raw
 	echo "[+] Nmap service scanning top 1000 TCP ports on domains"
-	nmap -sV -Pn -T3 --open --version-intensity 5 -iL ./$1/$foldername/$1_resolvable_subdomains.txt -oA ./$1/$foldername/nmap-raw/top1000TCP
+	nmap -sV -Pn -T3 --open --version-intensity 5 -iL ./$1/$foldername/$1_resolvable_subdomains.txt -oA ./$1/$foldername/nmap-raw/top1000TCP | perl -ne 'if(/NEXT SERVICE FINGERPRINT/){$f=1}else{$f=0 if $f and not /^SF/}print unless $f' | grep -v "please submit the following fingerprints"
 	xsltproc ./$1/$foldername/nmap-raw/top1000TCP.xml -o ./$1/$foldername/nmap_top1000TCP_parsed.htm
 }
 
