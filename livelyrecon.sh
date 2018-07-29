@@ -150,7 +150,7 @@ main(){
 
 if [[ -z $@ ]]; then
   echo "Error: no targets specified."
-  echo "Usage: ./lazyrecon.sh <target>"
+  echo "Usage: ./livelyrecon.sh <target>"
   exit 1
 fi
 
