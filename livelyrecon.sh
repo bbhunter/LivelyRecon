@@ -85,13 +85,13 @@ shodanvuln(){
 nmapTop1000TCP(){
 	mkdir ./$1/$foldername/nmap-raw
 	echo "[+] Nmap service scanning top 1000 TCP ports on domains"
-	nmap -sV -Pn -T3 --open --version-intensity 5 -iL ./$1/$foldername/$1_reachable_hostnames.txt -oA ./$1/$foldername/nmap-raw/top1000TCP
+	nmap -sV -Pn -T3 --open --version-intensity 5 -iL ./$1/$foldername/$1_resolvable_subdomains.txt -oA ./$1/$foldername/nmap-raw/top1000TCP
 	xsltproc ./$1/$foldername/nmap-raw/top1000TCP.xml -o ./$1/$foldername/nmap_top1000TCP_parsed.htm
 }
 
 nmapCommonUDP(){
 	echo "[+] Nmap service scanning UDP ports 53, 161, and 500 on domains"
-	nmap -sV -Pn --open --version-intensity 5 -sU -O --max-rate 15000 -Pn -T3 -p 53,161,500 -iL ./$1/$foldername/$1_reachable_hostnames.txt -oA ./$1/$foldername/nmap-raw/commonUDP
+	nmap -sV -Pn --open --version-intensity 5 -sU -O --max-rate 15000 -Pn -T3 -p 53,161,500 -iL ./$1/$foldername/$1_resolvable_subdomains.txt -oA ./$1/$foldername/nmap-raw/commonUDP
 	xsltproc ./$1/$foldername/nmap-raw/commonUDP.xml -o ./$1/$foldername/nmap_commonUDP_parsed.htm
 }
 
