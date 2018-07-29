@@ -156,4 +156,3 @@ fi
 path=$(pwd)
 foldername=recon-$(date +"%Y-%m-%d")
 main $1
- test
